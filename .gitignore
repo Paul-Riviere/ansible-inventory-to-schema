@@ -1,2 +1,4 @@
 .venv/
-ansible_inventory_to_schema.egg-info/
+
+src/ansible_inventory_to_schema.egg-info/
+src/**/__pycache__/

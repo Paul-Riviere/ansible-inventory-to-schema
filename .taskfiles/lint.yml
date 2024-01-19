@@ -1,0 +1,19 @@
+---
+version: "3"
+
+tasks:
+  flake8:
+    desc: Run flake8
+    cmds:
+      - flake8 --config .config/.flake8.ini
+
+  yamllint:
+    desc: Run yamllint
+    cmds:
+      - yamllint -c .config/.yamllint.yml . --strict
+
+  all:
+    desc: Run all linters
+    cmds:
+      - task: flake8
+      - task: yamllint

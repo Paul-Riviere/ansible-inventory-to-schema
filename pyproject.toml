@@ -39,8 +39,8 @@ Documentation = "https://pa-decarvalho.github.io/mkdocs-asciinema-player/"
 Issues = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
 Source = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
 
-[project.entry-points."mkdocs.plugins"]
-asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
+[project.scripts]
+ansible-inventory-to-schema = "ansible_inventory_to_schema.__main__:main"
 
 [build-system]
 requires = ["setuptools>=43.0.0", "wheel"]

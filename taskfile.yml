@@ -4,6 +4,9 @@ version: "3"
 vars:
   PYTHON: "python3"
 
+includes:
+  lint: .taskfiles/lint.yml
+
 tasks:
   default:
     cmds:
@@ -12,8 +15,6 @@ tasks:
   bootstrap:
     desc: Bootstrap Python venv (requirements)
     cmds:
-      - python3 -m venv .venv
-      - source .venv/bin/activate
       - >
         python3 -m venv .venv &&
         source .venv/bin/activate &&
