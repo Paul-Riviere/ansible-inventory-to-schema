@@ -1,0 +1,13 @@
+---
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task: help
+
+  help:
+    desc: Display help
+    silent: true
+    cmds:
+      - task --list
