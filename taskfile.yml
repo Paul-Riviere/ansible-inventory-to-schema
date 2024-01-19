@@ -1,13 +1,38 @@
 ---
 version: "3"
 
+vars:
+  PYTHON: "python3"
+
+includes:
+  lint: .taskfiles/lint.yml
+
 tasks:
   default:
     cmds:
       - task: help
 
+  bootstrap:
+    desc: Bootstrap Python venv (requirements)
+    cmds:
+      - >
+        python3 -m venv .venv &&
+        source .venv/bin/activate &&
+        pip install --upgrade pip build twine &&
+        pip install -e .[lint]
+
+  clean:
+    desc: Cleanup project
+    cmds:
+      - rm -rf .venv
+
+  reinit:
+    desc: Reinitialization Python venv (requirements)
+    cmds:
+      - task: clean
+      - task: bootstrap
+
   help:
     desc: Display help
-    silent: true
     cmds:
       - task --list

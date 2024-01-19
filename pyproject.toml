@@ -1,0 +1,47 @@
+[project]
+name = "ansible-inventory-to-schema"
+version = "0.0.0"
+description = "A CLI tool to generate schema from an Ansible inventory."
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["ansible", "documentation", "schema"]
+authors = [
+  {name = "Paul RIVIERE", email = "paul.riviere@supinfo.com"}
+]
+
+requires-python = ">=3.9"
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Operating System :: POSIX",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Topic :: Software Development :: Build Tools",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Utilities",
+  "Topic :: Software Development :: Documentation",
+]
+
+[project.optional-dependencies]
+lint = [
+  "flake8==6.0.0",
+  "yamllint==1.32.0",
+]
+
+[project.urls]
+Documentation = "https://pa-decarvalho.github.io/mkdocs-asciinema-player/"
+Issues = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
+Source = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+
+[project.scripts]
+ansible-inventory-to-schema = "ansible_inventory_to_schema.__main__:main"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
