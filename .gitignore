@@ -1,0 +1,2 @@
+.venv/
+ansible_inventory_to_schema.egg-info/
