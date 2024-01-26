@@ -2,15 +2,30 @@
 version: "3"
 
 tasks:
+  lint-template:
+    internal: true
+    cmds:
+      - >
+        if [ "{{ .USE_VENV }}" = "true" ]; then
+          source .venv/bin/activate &&
+          {{ .LINTER_COMMAND }}
+        else
+          {{ .LINTER_COMMAND }}
+        fi
+
   flake8:
     desc: Run flake8
     cmds:
-      - flake8 --config .config/.flake8.ini
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: flake8 --config .config/.flake8.ini
 
   yamllint:
     desc: Run yamllint
     cmds:
-      - yamllint -c .config/.yamllint.yml . --strict
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: yamllint -c .config/.yamllint.yml . --strict
 
   all:
     desc: Run all linters
