@@ -17,10 +17,15 @@ tasks:
     desc: Bootstrap Python venv (requirements)
     cmds:
       - >
-        python3 -m venv .venv &&
-        source .venv/bin/activate &&
-        pip install --upgrade pip build twine &&
-        pip install -e .[lint,test]
+        if [ "{{ .USE_VENV }}" = "true" ]; then
+          python3 -m venv .venv &&
+          source .venv/bin/activate &&
+          pip install --upgrade pip build twine &&
+          pip install -e .[lint,test]
+        else
+          pip install --upgrade pip build twine &&
+          pip install -e .[lint,test]
+        fi
 
   clean:
     desc: Cleanup project
