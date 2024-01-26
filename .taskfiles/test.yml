@@ -6,4 +6,10 @@ tasks:
     desc: Run pytest command
     silent: true
     cmds:
-      - pytest -vv
+      - >
+        if [ "{{ .USE_VENV }}" = "true" ]; then
+          source .venv/bin/activate &&
+          pytest -vv
+        else
+          pytest -vv
+        fi
