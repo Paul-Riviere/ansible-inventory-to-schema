@@ -6,6 +6,7 @@ vars:
 
 includes:
   lint: .taskfiles/lint.yml
+  test: .taskfiles/test.yml
 
 tasks:
   default:
@@ -19,7 +20,7 @@ tasks:
         python3 -m venv .venv &&
         source .venv/bin/activate &&
         pip install --upgrade pip build twine &&
-        pip install -e .[lint]
+        pip install -e .[lint,test]
 
   clean:
     desc: Cleanup project

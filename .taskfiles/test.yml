@@ -1,0 +1,9 @@
+---
+version: "3"
+
+tasks:
+  pytest:
+    desc: Run pytest command
+    silent: true
+    cmds:
+      - pytest -vv
