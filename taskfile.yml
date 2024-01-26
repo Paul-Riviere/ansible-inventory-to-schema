@@ -6,6 +6,7 @@ vars:
 
 includes:
   lint: .taskfiles/lint.yml
+  test: .taskfiles/test.yml
 
 tasks:
   default:

@@ -10,7 +10,7 @@ def cli():
 
 @click.command()
 def generate():
-    print("Hello World")
+    click.echo("Hello World")
 
 
 cli.add_command(generate)
