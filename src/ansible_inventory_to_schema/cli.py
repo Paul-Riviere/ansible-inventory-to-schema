@@ -11,12 +11,28 @@ def cli():
 
 
 @click.command()
-@click.option('-i','--inventory-path', default='.', show_default=True)
+@click.option('-i', '--inventory-path', default='.', show_default=True)
 def generate(inventory_path):
     click.echo("Inventory path: " + inventory_path)
     dl = DataLoader()
     im = InventoryManager(loader=dl, sources=[inventory_path])
-    click.echo(im.get_hosts())
+
+    count = 0
+
+    plantuml_output_file = open("generated_plantuml", "w")
+    plantuml_output_file.write('@startuml\n')
+
+    for group, host_list in im.get_groups_dict().items():
+        count += 1
+        plantuml_group = 'rectangle "**' + group + '**\n--'.encode("unicode_escape").decode("UTF-8")
+        for host in host_list:
+            plantuml_group += "\n".encode("unicode_escape").decode("UTF-8") + host
+
+        plantuml_group += '" as rectangle' + str(count) + "\n"
+        plantuml_output_file.write(plantuml_group)
+
+    plantuml_output_file.write('@enduml')
+    plantuml_output_file.close()
 
 
 cli.add_command(generate)

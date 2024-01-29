@@ -1,4 +1,5 @@
 .venv/
 
 src/ansible_inventory_to_schema.egg-info/
-**/*/__pycache__/
+__pycache__
+generated_plantuml
