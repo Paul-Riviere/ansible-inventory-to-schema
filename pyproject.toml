@@ -30,6 +30,7 @@ classifiers = [
 
 dependencies = [
   "click==8.1.7",
+  "ansible-core==2.16.2"
 ]
 
 [project.optional-dependencies]

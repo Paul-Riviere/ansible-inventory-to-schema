@@ -1,0 +1,12 @@
+---
+test_group_1:
+  hosts:
+    test_machine_1:
+    test_machine_2:
+    test_machine_3:
+
+test_group_2:
+  hosts:
+    test_machine_4:
+    test_machine_5:
+    test_machine_6:
