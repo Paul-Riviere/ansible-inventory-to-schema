@@ -10,3 +10,8 @@ test_group_2:
     test_machine_4:
     test_machine_5:
     test_machine_6:
+
+test_parent_group:
+  children:
+    test_group_1:
+    test_group_2:
