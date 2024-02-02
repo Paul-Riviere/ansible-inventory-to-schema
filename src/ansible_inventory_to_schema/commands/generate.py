@@ -24,7 +24,7 @@ class Generate:
     @staticmethod
     def graph_group(group, depth=0):
         depth += 1
-        for kid in group.get_descendants():
+        for kid in group.child_groups:
             click.echo(kid.get_name() + " is descendant of " + group.get_name() + " at depth " + str(depth))
             Generate.graph_group(kid, depth)
 
