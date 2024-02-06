@@ -30,7 +30,7 @@ class Generate:
 
             if group.get_name() != "all":
                 result["links"].append(group.get_name() + "-->" + kid.get_name() + "\n")
-        
+
         temp_group = ""
         if group.get_name() != "all":
             temp_group = 'rectangle "**' + group.get_name() + '**\n--'.encode("unicode_escape").decode("UTF-8")
@@ -39,5 +39,5 @@ class Generate:
 
             temp_group += '" as ' + group.get_name() + "\n"
             result["groups"].append(temp_group)
-        
+
         return result
