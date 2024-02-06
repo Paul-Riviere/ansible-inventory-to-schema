@@ -15,3 +15,9 @@ test_parent_group:
   children:
     test_group_1:
     test_group_2:
+
+test_group_3:
+  hosts:
+    test_machine_7:
+    test_machine_8:
+    test_machine_9:
