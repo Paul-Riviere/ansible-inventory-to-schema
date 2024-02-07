@@ -10,6 +10,8 @@ class Generate:
         dl = DataLoader()
         im = InventoryManager(loader=dl, sources=[inventory_path])
 
+        # print(im.groups["webservers"].hosts)
+
         result = Generate.graph_group(im.groups["all"])
         formated_result = {"groups": list(dict.fromkeys(result["groups"])), "links": list(dict.fromkeys(result["links"]))}
 
@@ -22,22 +24,24 @@ class Generate:
             plantuml_output_file.write('@enduml')
 
     @staticmethod
-    def graph_group(group, result={"groups": [], "links": []}):
-        for kid in group.child_groups:
-            temp_result = Generate.graph_group(kid, result)
-            result["groups"] += temp_result["groups"]
-            result["links"] += temp_result["links"]
+    def graph_group(root_group):
+        result = {"groups": set(), "links": set()}
+        stack = [root_group]
 
-            if group.get_name() != "all":
-                result["links"].append(group.get_name() + "-->" + kid.get_name() + "\n")
+        while stack:
+            current_group = stack.pop()
 
-        temp_group = ""
-        if group.get_name() != "all":
-            temp_group = 'rectangle "**' + group.get_name() + '**\n--'.encode("unicode_escape").decode("UTF-8")
-            for host in group.hosts:
-                temp_group += "\n".encode("unicode_escape").decode("UTF-8") + host.name
+            if current_group.get_name() != "all":
+                temp_group = 'rectangle "**' + current_group.get_name() + '**\n--'.encode("unicode_escape").decode(
+                    "UTF-8")
+                for host in current_group.hosts:
+                    temp_group += "\n".encode("unicode_escape").decode("UTF-8") + host.name
+                temp_group += '" as ' + current_group.get_name() + "\n"
+                result["groups"].add(temp_group)
 
-            temp_group += '" as ' + group.get_name() + "\n"
-            result["groups"].append(temp_group)
+            for kid in current_group.child_groups:
+                if current_group.get_name() != "all":
+                    result["links"].add(current_group.get_name() + "-->" + kid.get_name() + "\n")
+                stack.append(kid)
 
         return result
